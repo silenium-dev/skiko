@@ -268,6 +268,7 @@ fun SkikoProjectContext.createLinkJvmBindings(
                 "-static-libstdc++",
                 "-static-libgcc",
                 "-lGL",
+                "-lGLESv2",
                 "-lX11",
                 "-lEGL",
                 "-lfontconfig",
