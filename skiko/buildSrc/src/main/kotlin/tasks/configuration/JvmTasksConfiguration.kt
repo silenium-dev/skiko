@@ -269,6 +269,7 @@ fun SkikoProjectContext.createLinkJvmBindings(
                 "-static-libgcc",
                 "-lGL",
                 "-lX11",
+                "-lEGL",
                 "-lfontconfig",
                 // A fix for https://github.com/JetBrains/compose-jb/issues/413.
                 // Dynamic position independent linking uses PLT thunks relying on jump targets in GOT (Global Offsets Table).
