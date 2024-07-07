@@ -66,7 +66,7 @@ public:
         }
         std::cout << "egl version: " << major << "." << minor << std::endl;
 
-        if (!eglBindAPI(EGL_OPENGL_API)) {
+        if (!eglBindAPI(EGL_OPENGL_ES_API)) {
             std::cerr << "Could not bind OpenGL API" << std::endl;
             return nullptr;
         }
@@ -91,7 +91,7 @@ public:
         std::cout << "eglConfig: " << (void *) eglConfig << std::endl;
 
         static const EGLint contextAttribs[] = {
-                EGL_CONTEXT_MAJOR_VERSION, 3,
+                EGL_CONTEXT_MAJOR_VERSION, 2,
                 EGL_NONE
         };
         EGLContext eglContext = eglCreateContext(eglDisplay, eglConfig, EGL_NO_CONTEXT, contextAttribs);
