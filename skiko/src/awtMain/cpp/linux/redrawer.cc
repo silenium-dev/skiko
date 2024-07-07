@@ -81,7 +81,7 @@ public:
         }
 
         static const EGLint contextAttribs[] = {
-                EGL_CONTEXT_MAJOR_VERSION, 2,
+                EGL_CONTEXT_MAJOR_VERSION, 3,
                 EGL_NONE
         };
         EGLContext eglContext = eglCreateContext(eglDisplay, eglConfig, EGL_NO_CONTEXT, contextAttribs);
