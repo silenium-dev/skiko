@@ -540,9 +540,9 @@ class Surface : RefCnt {
         }
     }
 
-    internal val _context: DirectContext?
+    val context: DirectContext?
 
-    internal val _renderTarget: BackendRenderTarget?
+    val renderTarget: BackendRenderTarget?
 
     /**
      *
@@ -1002,18 +1002,18 @@ class Surface : RefCnt {
         }
 
     internal constructor(ptr: NativePointer) : super(ptr) {
-        _context = null
-        _renderTarget = null
+        context = null
+        renderTarget = null
     }
 
     internal constructor(ptr: NativePointer, context: DirectContext?) : super(ptr) {
-        _context = context
-        _renderTarget = null
+        this.context = context
+        renderTarget = null
     }
 
     internal constructor(ptr: NativePointer, context: DirectContext?, renderTarget: BackendRenderTarget?) : super(ptr) {
-        _context = context
-        _renderTarget = renderTarget
+        this.context = context
+        this.renderTarget = renderTarget
     }
 }
 
