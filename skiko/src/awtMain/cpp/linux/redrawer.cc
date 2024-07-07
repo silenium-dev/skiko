@@ -17,7 +17,6 @@
 
 typedef GLXContext (*glXCreateContextAttribsARBProc)(Display *, GLXFBConfig, GLXContext, Bool, const int *);
 
-// TODO: Remove debug output
 class EGLContextWrapper {
 public:
     EGLContextWrapper(EGLDisplay _display, EGLContext _context, EGLConfig _config, EGLSurface _surface, Window _window,
@@ -26,16 +25,16 @@ public:
             transparency(_transparency), egl(egl) {};
 
     ~EGLContextWrapper() {
-        const auto eglDestroyContext = (PFNEGLDESTROYCONTEXTPROC) dlsym(egl, "eglDestroyContext");
+        const auto eglDestroyContext = getProc<PFNEGLDESTROYCONTEXTPROC>("eglDestroyContext");
         eglDestroyContext(eglDisplay, eglContext);
         dlclose(egl);
     };
 
     static EGLContextWrapper *create(Display *display, Window window, bool transparency) {
         const auto egl = dlopen("libEGL.so", RTLD_LAZY);
-        printf("egl: %p\n", egl);
         if (!egl) {
-            fputs(dlerror(), stderr);
+            // TODO: Fallback to GLX?
+            std::cerr << "Could not load EGL: " << dlerror() << std::endl;
             return nullptr;
         }
 
@@ -45,26 +44,18 @@ public:
         const auto eglChooseConfig = (PFNEGLCHOOSECONFIGPROC) dlsym(egl, "eglChooseConfig");
         const auto eglCreateContext = (PFNEGLCREATECONTEXTPROC) dlsym(egl, "eglCreateContext");
         const auto eglCreateWindowSurface = (PFNEGLCREATEWINDOWSURFACEPROC) dlsym(egl, "eglCreateWindowSurface");
-        std::cout << "eglGetDisplay: " << (void *) eglGetDisplay << std::endl;
-        std::cout << "eglInitialize: " << (void *) eglInitialize << std::endl;
-        std::cout << "eglBindAPI: " << (void *) eglBindAPI << std::endl;
-        std::cout << "eglChooseConfig: " << (void *) eglChooseConfig << std::endl;
-        std::cout << "eglCreateContext: " << (void *) eglCreateContext << std::endl;
-        std::cout << "eglCreateWindowSurface: " << (void *) eglCreateWindowSurface << std::endl;
 
         EGLDisplay eglDisplay = eglGetDisplay(display);
         if (eglDisplay == EGL_NO_DISPLAY) {
             std::cerr << "Could not get egl eglDisplay" << std::endl;
             return nullptr;
         }
-        std::cout << "eglDisplay: " << (void *) eglDisplay << std::endl;
 
         EGLint major, minor;
         if (!eglInitialize(eglDisplay, &major, &minor)) {
             std::cerr << "Could not initialize egl" << std::endl;
             return nullptr;
         }
-        std::cout << "egl version: " << major << "." << minor << std::endl;
 
         if (!eglBindAPI(EGL_OPENGL_ES_API)) {
             std::cerr << "Could not bind OpenGL API" << std::endl;
@@ -88,7 +79,6 @@ public:
             std::cerr << "Could not choose egl config" << std::endl;
             return nullptr;
         }
-        std::cout << "eglConfig: " << (void *) eglConfig << std::endl;
 
         static const EGLint contextAttribs[] = {
                 EGL_CONTEXT_MAJOR_VERSION, 2,
@@ -99,7 +89,6 @@ public:
             std::cerr << "Could not create egl context" << std::endl;
             return nullptr;
         }
-        std::cout << "eglContext: " << (void *) eglContext << std::endl;
 
         EGLSurface eglSurface = eglCreateWindowSurface(eglDisplay, eglConfig, window, nullptr);
         if (eglSurface == EGL_NO_SURFACE) {
