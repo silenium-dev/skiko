@@ -37,7 +37,7 @@ fun SkikoProjectContext.registerOrGetSkiaDirProvider(
     val downloadSkia = tasks.registerOrGetTask<Download>("downloadSkia$taskNameSuffix") {
         onlyIf { !dest.exists() }
         onlyIfModified(true)
-        val skiaUrl = "https://github.com/JetBrains/skia-pack/releases/download/$skiaRelease.zip"
+        val skiaUrl = "https://github.com/silenium-dev/skia-pack/releases/download/$skiaRelease.zip"
         inputs.property("skia.url", skiaUrl)
         src(skiaUrl)
         dest(skiko.dependenciesDir.resolve("skia/$skiaRelease.zip"))
