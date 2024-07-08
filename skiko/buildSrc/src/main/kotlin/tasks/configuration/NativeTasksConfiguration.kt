@@ -222,6 +222,7 @@ fun SkikoProjectContext.configureNativeTarget(os: OS, arch: Arch, target: Kotlin
             "-L/usr/lib/x86_64-linux-gnu",
             "-lfontconfig",
             "-lGL",
+            "-lEGL",
             // TODO: an ugly hack, Linux linker searches only unresolved symbols.
             "$skiaBinDir/libsksg.a",
             "$skiaBinDir/libskshaper.a",
