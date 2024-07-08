@@ -120,7 +120,7 @@ class SkikoProperties(private val myProject: Project) {
     val isTeamcityCIBuild: Boolean
         get() = myProject.hasProperty("teamcity")
 
-    val planeDeployVersion: String = myProject.property("deploy.version") as String
+    val planeDeployVersion: String = (myProject.property("deploy.version") as String).removePrefix("v")
 
     val deployVersion: String
         get() {
@@ -168,10 +168,10 @@ class SkikoProperties(private val myProject: Project) {
         get() = System.getenv("REPOSILITE_URL") ?: "https://reposilite.silenium.dev/snapshots"
 
     val reposiliteUser: String
-        get() = System.getenv("REPOSILITE_USERNAME") ?: ""
+        get() = System.getenv("REPOSILITE_USERNAME") ?: myProject.findProperty("reposiliteUser") as String? ?: ""
 
     val reposilitePassword: String
-        get() = System.getenv("REPOSILITE_PASSWORD") ?: ""
+        get() = System.getenv("REPOSILITE_PASSWORD") ?: myProject.findProperty("reposilitePassword") as String? ?: ""
 
     val signHost: String?
         get() = System.getenv("JB_SIGN_HOST")

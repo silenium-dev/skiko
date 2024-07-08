@@ -119,7 +119,7 @@ jobs:
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
         run: |
-          ./gradlew --no-daemon -Pskiko.android.enabled=true :skiko:publish
+          ./gradlew --no-daemon -Pdeploy.release=true -Pdeploy.version=${{github.ref_name}} -Pskiko.android.enabled=true :skiko:publish
 
   windows:
     runs-on: windows-2019
@@ -141,7 +141,7 @@ jobs:
       - shell: bash
         name: 'Publish to Reposilite'
         run: |
-          ./gradlew --stacktrace --info :skiko:publish
+          ./gradlew --stacktrace --info -Pdeploy.release=true -Pdeploy.version=${{github.ref_name}} :skiko:publish
 #  web:
 #    runs-on: ubuntu-20.04
 #    steps:
