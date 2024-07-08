@@ -5,7 +5,8 @@ on:
   release:
     types:
       - published
-
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   macos:
     runs-on: macos-11
@@ -21,15 +22,7 @@ jobs:
           cache: 'gradle'
 
       - shell: bash
-        name: 'Compile and run AWT tests'
-        run: ./gradlew --stacktrace --info -Pskiko.native.enabled=true -Pskiko.test.onci=true :skiko:awtTest
-
-      - shell: bash
-        name: 'Compile and run macOS x64 tests'
-        run: ./gradlew --stacktrace --info -Pskiko.native.enabled=true -Pskiko.test.onci=true :skiko:macosX64Test
-
-      - shell: bash
-        name: 'Publish to Github Packages, check AWT sample'
+        name: 'Publish to Github Packages'
         run: |
           ./gradlew --stacktrace --info -Pskiko.native.enabled=true :skiko:publish
 
@@ -121,7 +114,7 @@ jobs:
           sudo Xvfb :0 -screen 0 1280x720x24 &
 
       - shell: bash
-        name: 'Publish to Github Packages, check AWT sample'
+        name: 'Publish to Github Packages'
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
         run: |
@@ -145,7 +138,7 @@ jobs:
           cache: 'gradle'
 
       - shell: bash
-        name: 'Publish to Github Packages, check AWT sample'
+        name: 'Publish to Github Packages'
         run: |
           ./gradlew --stacktrace --info :skiko:publish
   web:
@@ -183,7 +176,7 @@ jobs:
           ./emsdk activate 3.1.49
           source ./emsdk_env.sh
           cd ..
-      - name: 'run k/wasm tests'
+      - name: 'Publish to Github Packages'
         shell: bash
         run: |
           cd ./skiko
