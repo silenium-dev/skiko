@@ -1,5 +1,5 @@
-# Default Skiko CI
-name: CI
+# Publish to Github Packages
+name: Publish
 
 on:
   release:
