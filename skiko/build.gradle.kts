@@ -1,6 +1,5 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.crypto.checksum.Checksum
-import org.jetbrains.compose.internal.publishing.MavenCentralProperties
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 import tasks.configuration.*
 
@@ -563,11 +562,10 @@ publishing {
     }
 }
 
-val mavenCentral = MavenCentralProperties(project)
-if (skiko.isTeamcityCIBuild || mavenCentral.signArtifacts) {
+if (System.getenv().containsKey("SIGNING_KEY")) {
     signing {
         sign(publishing.publications)
-        useInMemoryPgpKeys(mavenCentral.signArtifactsKey.get(), mavenCentral.signArtifactsPassword.get())
+        useInMemoryPgpKeys(System.getenv("SIGNING_KEY"), System.getenv("SIGNING_PASSWORD"))
     }
     configureSignAndPublishDependencies()
 }
