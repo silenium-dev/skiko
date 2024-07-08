@@ -473,11 +473,11 @@ publishing {
             url = uri("${rootProject.buildDir}/repo")
         }
         maven {
-            name = "GitHubPackages"
-            url = uri(skiko.githubPackagesUrl)
+            name = "Reposilite"
+            url = uri(skiko.reposiliteUrl)
             credentials {
-                username = skiko.githubPackagesUser
-                password = skiko.githubPackagesPassword
+                username = skiko.reposiliteUser
+                password = skiko.reposilitePassword
             }
         }
     }
