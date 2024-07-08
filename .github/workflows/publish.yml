@@ -2,13 +2,9 @@
 name: CI
 
 on:
-#  push:
-#    branches: [ master ]
-  # TODO: temporary for faster tests, restore!
-#  pull_request:
-#    branches: [ master ]
-
-  workflow_dispatch:
+  release:
+    types:
+      - published
 
 jobs:
   macos:
@@ -33,18 +29,9 @@ jobs:
         run: ./gradlew --stacktrace --info -Pskiko.native.enabled=true -Pskiko.test.onci=true :skiko:macosX64Test
 
       - shell: bash
-        name: 'Publish to Maven Local, check AWT sample'
+        name: 'Publish to Github Packages, check AWT sample'
         run: |
-          ./gradlew --stacktrace --info -Pskiko.native.enabled=true :skiko:publishToMavenLocal
-          ./gradlew --stacktrace --info :SkiaAwtSample:installDist
-
-      - uses: actions/upload-artifact@v3
-        name: 'Save test results as artifact'
-        if: always()
-        with:
-          name: test-reports-macos
-          path: ./skiko/build/reports/tests
-          retention-days: 5
+          ./gradlew --stacktrace --info -Pskiko.native.enabled=true :skiko:publish
 
   iOS:
     runs-on: macos-13
@@ -73,31 +60,10 @@ jobs:
       - name: 'Print Selected UUID'
         run: echo $IOS_SIM_UUID
 
-      - name: 'Compile and run iOS x64 tests'
-        uses: nick-fields/retry@v2
-        with:
-          max_attempts: 10
-          timeout_minutes: 60
-          shell: bash
-          command: ./gradlew --stacktrace --info -Pskiko.native.enabled=true -Pskiko.test.onci=true -Pskiko.iosSimulatorUUID="${{ env.IOS_SIM_UUID }}" :skiko:iosX64TestWithMetal
-
-      # iosSimulatorArm64Test will build the binary but the tests will be skipped due to X64 host machine
-      - shell: bash
-        name: 'Compile iOS arm64 tests'
-        run: ./gradlew --stacktrace --info -Pskiko.native.enabled=true -Pskiko.test.onci=true :skiko:iosSimulatorArm64Test
-
       # TODO run iOS specific tests on iPhone simulator
       - shell: bash
-        name: 'Publish to Maven Local'
-        run: ./gradlew --stacktrace --info -Pskiko.native.enabled=true :skiko:publishToMavenLocal
-
-      - uses: actions/upload-artifact@v3
-        name: 'Save test results as artifact'
-        if: always()
-        with:
-          name: test-reports-macos
-          path: ./skiko/build/reports/tests
-          retention-days: 5
+        name: 'Publish to Github Packages'
+        run: ./gradlew --stacktrace --info -Pskiko.native.enabled=true :skiko:publish
 
   tvOS:
     # TVOS requires macos 13
@@ -112,15 +78,7 @@ jobs:
           java-version: '11'
       - shell: bash
         run: |
-          ./gradlew --stacktrace --info -Pskiko.native.enabled=true -Pskiko.test.onci=true :skiko:tvosX64Test
-          # tvosSimulatorArm64Test will build the binary but the tests will be skipped due to X64 host machine
-          ./gradlew --stacktrace --info -Pskiko.native.enabled=true -Pskiko.test.onci=true :skiko:tvosSimulatorArm64Test
-      - uses: actions/upload-artifact@v2
-        if: always()
-        with:
-          name: test-reports-macos
-          path: ./skiko/build/reports/tests
-          retention-days: 5
+          ./gradlew --stacktrace --info -Pskiko.native.enabled=true -Pskiko.test.onci=true :skiko:publish
 
   linux:
     runs-on: ubuntu-20.04
@@ -163,34 +121,11 @@ jobs:
           sudo Xvfb :0 -screen 0 1280x720x24 &
 
       - shell: bash
-        name: 'Compile and run Linux x64 tests'
-        run: |
-          export DISPLAY=:0
-          ./gradlew --no-daemon --stacktrace --info -Pskiko.native.enabled=true -Pkotlin.native.cacheKind.linuxX64=none -Pskiko.test.onci=true :skiko:linuxX64Test
-
-      - shell: bash
-        name: 'Compile and run AWT tests'
-        run: |
-          export DISPLAY=:0
-          ./gradlew --no-daemon --stacktrace --info -Pskiko.native.enabled=true -Pkotlin.native.cacheKind.linuxX64=none -Pskiko.test.onci=true :skiko:awtTest
-        timeout-minutes: 25
-
-      - shell: bash
-        name: 'Publish to Maven Local, check AWT sample'
+        name: 'Publish to Github Packages, check AWT sample'
         env:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
         run: |
-          ./gradlew --no-daemon --stacktrace --info -Pkotlin.native.cacheKind.linuxX64=none :skiko:publishToMavenLocal
-          ./gradlew --no-daemon --stacktrace --info :SkiaAwtSample:installDist
-          ./gradlew --no-daemon -Pskiko.android.enabled=true :skiko:publishSkikoJvmRuntimeAndroidX64PublicationToMavenLocal :skiko:publishSkikoJvmRuntimeAndroidArm64PublicationToMavenLocal :skiko:publishAndroidPublicationToMavenLocal
-
-      - uses: actions/upload-artifact@v3
-        name: 'Save test results as artifact'
-        if: always()
-        with:
-          name: test-reports-linux
-          path: ./skiko/build/reports/tests
-          retention-days: 5
+          ./gradlew --no-daemon -Pskiko.android.enabled=true :skiko:publish
 
   windows:
     runs-on: windows-2019
@@ -210,19 +145,48 @@ jobs:
           cache: 'gradle'
 
       - shell: bash
-        name: 'Compile and run AWT tests'
-        run: ./gradlew --stacktrace --info -Pskiko.test.onci=true :skiko:awtTest
-
-      - shell: bash
-        name: 'Publish to Maven Local, check AWT sample'
+        name: 'Publish to Github Packages, check AWT sample'
         run: |
-          ./gradlew --stacktrace --info :skiko:publishToMavenLocal
-          ./gradlew --stacktrace --info :SkiaAwtSample:installDist
-
-      - uses: actions/upload-artifact@v3
-        name: 'Save test results as artifact'
-        if: always()
+          ./gradlew --stacktrace --info :skiko:publish
+  web:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: browser-actions/setup-chrome@v1
         with:
-          name: test-reports-windows
-          path: ./skiko/build/reports/tests
-          retention-days: 5
+          chrome-version: stable
+        id: setup-chrome
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install libdbus-1-dev
+      - name: 'install emsdk'
+        shell: bash
+        run: |
+          cd ./skiko
+          sudo apt-get update -y
+          sudo apt-get install binutils build-essential -y
+          sudo apt-get install software-properties-common -y
+          sudo apt-get install python git curl wget -y
+          if [ -d ./emsdk ]; then
+            cd ./emsdk
+            git pull
+          else
+            git clone https://github.com/emscripten-core/emsdk.git
+            cd ./emsdk
+          fi
+          ./emsdk install 3.1.49
+          ./emsdk activate 3.1.49
+          source ./emsdk_env.sh
+          cd ..
+      - name: 'run k/wasm tests'
+        shell: bash
+        run: |
+          cd ./skiko
+          source ./emsdk/emsdk_env.sh
+          ./gradlew --stacktrace --info -Pskiko.wasm.enabled=true -Pskiko.js.enabled=true publish
+permissions: write-all
