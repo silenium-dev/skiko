@@ -473,11 +473,11 @@ publishing {
             url = uri("${rootProject.buildDir}/repo")
         }
         maven {
-            name = "ComposeRepo"
-            url = uri(skiko.composeRepoUrl)
+            name = "GitHubPackages"
+            url = uri(skiko.githubPackagesUrl)
             credentials {
-                username = skiko.composeRepoUserName
-                password = skiko.composeRepoKey
+                username = skiko.githubPackagesUser
+                password = skiko.githubPackagesPassword
             }
         }
     }

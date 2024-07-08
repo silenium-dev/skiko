@@ -164,14 +164,14 @@ class SkikoProperties(private val myProject: Project) {
                 ?: myProject.findProperty("skia.dir")?.toString()
             )?.let { File(it) }?.takeIf { it.isDirectory }
 
-    val composeRepoUrl: String
-        get() = System.getenv("COMPOSE_REPO_URL") ?: "https://maven.pkg.jetbrains.space/public/p/compose/dev"
+    val githubPackagesUrl: String
+        get() = System.getenv("GH_PACKAGES_URL") ?: "https://maven.pkg.github.com/silenium-dev/skiko"
 
-    val composeRepoUserName: String
-        get() = System.getenv("COMPOSE_REPO_USERNAME") ?: ""
+    val githubPackagesUser: String
+        get() = System.getenv("GITHUB_ACTOR") ?: ""
 
-    val composeRepoKey: String
-        get() = System.getenv("COMPOSE_REPO_KEY") ?: ""
+    val githubPackagesPassword: String
+        get() = System.getenv("GITHUB_TOKEN") ?: ""
 
     val signHost: String?
         get() = System.getenv("JB_SIGN_HOST")
