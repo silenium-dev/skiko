@@ -189,4 +189,3 @@ jobs:
           cd ./skiko
           source ./emsdk/emsdk_env.sh
           ./gradlew --stacktrace --info -Pskiko.wasm.enabled=true -Pskiko.js.enabled=true publish
-permissions: write-all
