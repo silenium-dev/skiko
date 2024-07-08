@@ -141,7 +141,7 @@ jobs:
       - shell: bash
         name: 'Publish to Reposilite'
         run: |
-          ./gradlew --stacktrace --info -Pdeploy.release=true -Pdeploy.version=${{github.ref_name}} :skiko:publish
+          ./gradlew --stacktrace --info -Pdeploy.release=true -Pdeploy.version=${{github.ref_name}} :skiko:publish -x :skiko:publishKotlinMultiplatformPublicationToReposiliteRepository -x :skiko:publishAwtPublicationToReposiliteRepository
 #  web:
 #    runs-on: ubuntu-20.04
 #    steps:
