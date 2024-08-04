@@ -2618,6 +2618,38 @@ $dokka.location:org.jetbrains.skiko.swing/SkiaSwingLayer/renderApi/#/PointingToD
 $dokka.location:org.jetbrains.skiko.swing/SkiaSwingLayer/requestNativeFocusOnAccessible/#javax.accessibility.Accessible?/PointingToDeclaration/skiko/org.jetbrains.skiko.swing/-skia-swing-layer/request-native-focus-on-accessible.html
 $dokka.location:org.jetbrains.skiko.wasm////PointingToDeclaration/skiko/org.jetbrains.skiko.wasm/index.html
 $dokka.location:org.jetbrains.skiko.wasm//onWasmReady/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/skiko/org.jetbrains.skiko.wasm/on-wasm-ready.html
+$dokka.location:org.jetbrains.skiko.windows////PointingToDeclaration/skiko/org.jetbrains.skiko.windows/index.html
+$dokka.location:org.jetbrains.skiko.windows/JumpList///PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list/index.html
+$dokka.location:org.jetbrains.skiko.windows/JumpList/build/#kotlin.Function1[org.jetbrains.skiko.windows.JumpListBuilder,TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list/build.html
+$dokka.location:org.jetbrains.skiko.windows/JumpList/buildAsync/#kotlin.coroutines.SuspendFunction1[org.jetbrains.skiko.windows.JumpListBuilder,TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list/build-async.html
+$dokka.location:org.jetbrains.skiko.windows/JumpList/isSupported/#/PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list/is-supported.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListBuilder///PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-builder/index.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListBuilder/addCategory/#kotlin.String#kotlin.collections.List[org.jetbrains.skiko.windows.JumpListItem]/PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-builder/add-category.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListBuilder/addUserTask/#org.jetbrains.skiko.windows.JumpListItem/PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-builder/add-user-task.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListBuilder/beginList/#/PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-builder/begin-list.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListBuilder/close/#/PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-builder/close.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListBuilder/commit/#/PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-builder/commit.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListBuilder/getRemovedItems/#/PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-builder/get-removed-items.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListBuilder/setAppID/#kotlin.String/PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-builder/set-app-i-d.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListException///PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-exception/index.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListException/JumpListException/#kotlin.String#kotlin.Int/PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-exception/-jump-list-exception.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListException/code/#/PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-exception/code.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListItem///PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-item/index.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListItem/JumpListItem/#kotlin.String#kotlin.String/PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-item/-jump-list-item.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListItem/arguments/#/PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-item/arguments.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListItem/attributes/#/PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-item/attributes.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListItem/equals/#kotlin.Any?/PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-item/equals.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListItem/hashCode/#/PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-item/hash-code.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListItem/title/#/PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-item/title.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListItemAttributes///PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-item-attributes/index.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListItemAttributes/JumpListItemAttributes/#/PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-item-attributes/-jump-list-item-attributes.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListItemAttributes/description/#/PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-item-attributes/description.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListItemAttributes/icon/#/PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-item-attributes/icon.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListItemIcon.Companion///PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-item-icon/-companion/index.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListItemIcon///PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-item-icon/index.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListItemIcon/JumpListItemIcon/#kotlin.String#kotlin.Int/PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-item-icon/-jump-list-item-icon.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListItemIcon/index/#/PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-item-icon/--index--.html
+$dokka.location:org.jetbrains.skiko.windows/JumpListItemIcon/path/#/PointingToDeclaration/skiko/org.jetbrains.skiko.windows/-jump-list-item-icon/path.html
 $dokka.location:org.jetbrains.skiko////PointingToDeclaration/skiko/org.jetbrains.skiko/index.html
 $dokka.location:org.jetbrains.skiko//MainUIDispatcher/#/PointingToDeclaration/skiko/org.jetbrains.skiko/-main-u-i-dispatcher.html
 $dokka.location:org.jetbrains.skiko//available/#kotlin.Array[kotlin.Pair[org.jetbrains.skiko.OS,org.jetbrains.skiko.OSVersion]]/PointingToDeclaration/skiko/org.jetbrains.skiko/available.html
@@ -2631,6 +2663,7 @@ $dokka.location:org.jetbrains.skiko//hostOs/#/PointingToDeclaration/skiko/org.j
 $dokka.location:org.jetbrains.skiko//kotlinBackend/#/PointingToDeclaration/skiko/org.jetbrains.skiko/kotlin-backend.html
 $dokka.location:org.jetbrains.skiko//loadBytesFromPath/#kotlin.String/PointingToDeclaration/skiko/org.jetbrains.skiko/load-bytes-from-path.html
 $dokka.location:org.jetbrains.skiko//nativeInitializeAccessible/#javax.accessibility.Accessible/PointingToDeclaration/skiko/org.jetbrains.skiko/native-initialize-accessible.html
+$dokka.location:org.jetbrains.skiko//numberOfBuffers/org.jetbrains.skiko.FrameBuffering#/PointingToDeclaration/skiko/org.jetbrains.skiko/number-of-buffers.html
 $dokka.location:org.jetbrains.skiko//orderEmojiAndSymbolsPopup/#/PointingToDeclaration/skiko/org.jetbrains.skiko/order-emoji-and-symbols-popup.html
 $dokka.location:org.jetbrains.skiko//setSystemLookAndFeel/#/PointingToDeclaration/skiko/org.jetbrains.skiko/set-system-look-and-feel.html
 $dokka.location:org.jetbrains.skiko//setupSkikoLoggerFactory/#kotlin.Function0[org.jetbrains.skiko.SkikoLoggerInterface]/PointingToDeclaration/skiko/org.jetbrains.skiko/setup-skiko-logger-factory.html
@@ -2697,6 +2730,13 @@ $dokka.location:org.jetbrains.skiko/FPSCounter/average/#/PointingToDeclaration/
 $dokka.location:org.jetbrains.skiko/FPSCounter/max/#/PointingToDeclaration/skiko/org.jetbrains.skiko/-f-p-s-counter/max.html
 $dokka.location:org.jetbrains.skiko/FPSCounter/min/#/PointingToDeclaration/skiko/org.jetbrains.skiko/-f-p-s-counter/min.html
 $dokka.location:org.jetbrains.skiko/FPSCounter/tick/#/PointingToDeclaration/skiko/org.jetbrains.skiko/-f-p-s-counter/tick.html
+$dokka.location:org.jetbrains.skiko/FrameBuffering.DEFAULT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}skiko/org.jetbrains.skiko/-frame-buffering/-d-e-f-a-u-l-t/index.html
+$dokka.location:org.jetbrains.skiko/FrameBuffering.DOUBLE///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}skiko/org.jetbrains.skiko/-frame-buffering/-d-o-u-b-l-e/index.html
+$dokka.location:org.jetbrains.skiko/FrameBuffering.TRIPLE///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}skiko/org.jetbrains.skiko/-frame-buffering/-t-r-i-p-l-e/index.html
+$dokka.location:org.jetbrains.skiko/FrameBuffering///PointingToDeclaration/skiko/org.jetbrains.skiko/-frame-buffering/index.html
+$dokka.location:org.jetbrains.skiko/FrameBuffering/entries/#/PointingToDeclaration/skiko/org.jetbrains.skiko/-frame-buffering/entries.html
+$dokka.location:org.jetbrains.skiko/FrameBuffering/valueOf/#kotlin.String/PointingToDeclaration/skiko/org.jetbrains.skiko/-frame-buffering/value-of.html
+$dokka.location:org.jetbrains.skiko/FrameBuffering/values/#/PointingToDeclaration/skiko/org.jetbrains.skiko/-frame-buffering/values.html
 $dokka.location:org.jetbrains.skiko/FrameDispatcher///PointingToDeclaration/skiko/org.jetbrains.skiko/-frame-dispatcher/index.html
 $dokka.location:org.jetbrains.skiko/FrameDispatcher/FrameDispatcher/#kotlin.coroutines.CoroutineContext#kotlin.coroutines.SuspendFunction0[kotlin.Unit]/PointingToDeclaration/skiko/org.jetbrains.skiko/-frame-dispatcher/-frame-dispatcher.html
 $dokka.location:org.jetbrains.skiko/FrameDispatcher/FrameDispatcher/#kotlinx.coroutines.CoroutineScope#kotlin.coroutines.SuspendFunction0[kotlin.Unit]/PointingToDeclaration/skiko/org.jetbrains.skiko/-frame-dispatcher/-frame-dispatcher.html
@@ -2813,10 +2853,11 @@ $dokka.location:org.jetbrains.skiko/SkiaLayerAnalytics///PointingToDeclaration/
 $dokka.location:org.jetbrains.skiko/SkiaLayerAnalytics/device/#kotlin.String#org.jetbrains.skiko.OS#org.jetbrains.skiko.GraphicsApi#kotlin.String?/PointingToDeclaration/skiko/org.jetbrains.skiko/-skia-layer-analytics/device.html
 $dokka.location:org.jetbrains.skiko/SkiaLayerAnalytics/renderer/#kotlin.String#org.jetbrains.skiko.OS#org.jetbrains.skiko.GraphicsApi/PointingToDeclaration/skiko/org.jetbrains.skiko/-skia-layer-analytics/renderer.html
 $dokka.location:org.jetbrains.skiko/SkiaLayerProperties///PointingToDeclaration/skiko/org.jetbrains.skiko/-skia-layer-properties/index.html
-$dokka.location:org.jetbrains.skiko/SkiaLayerProperties/SkiaLayerProperties/#kotlin.Boolean#kotlin.Boolean#org.jetbrains.skiko.GraphicsApi#org.jetbrains.skiko.GpuPriority/PointingToDeclaration/skiko/org.jetbrains.skiko/-skia-layer-properties/-skia-layer-properties.html
+$dokka.location:org.jetbrains.skiko/SkiaLayerProperties/SkiaLayerProperties/#kotlin.Boolean#kotlin.Boolean#org.jetbrains.skiko.FrameBuffering#org.jetbrains.skiko.GraphicsApi#org.jetbrains.skiko.GpuPriority/PointingToDeclaration/skiko/org.jetbrains.skiko/-skia-layer-properties/-skia-layer-properties.html
 $dokka.location:org.jetbrains.skiko/SkiaLayerProperties/adapterPriority/#/PointingToDeclaration/skiko/org.jetbrains.skiko/-skia-layer-properties/adapter-priority.html
 $dokka.location:org.jetbrains.skiko/SkiaLayerProperties/copy/#kotlin.Boolean#kotlin.Boolean#org.jetbrains.skiko.GraphicsApi#org.jetbrains.skiko.GpuPriority/PointingToDeclaration/skiko/org.jetbrains.skiko/-skia-layer-properties/copy.html
 $dokka.location:org.jetbrains.skiko/SkiaLayerProperties/equals/#kotlin.Any?/PointingToDeclaration/skiko/org.jetbrains.skiko/-skia-layer-properties/equals.html
+$dokka.location:org.jetbrains.skiko/SkiaLayerProperties/frameBuffering/#/PointingToDeclaration/skiko/org.jetbrains.skiko/-skia-layer-properties/frame-buffering.html
 $dokka.location:org.jetbrains.skiko/SkiaLayerProperties/hashCode/#/PointingToDeclaration/skiko/org.jetbrains.skiko/-skia-layer-properties/hash-code.html
 $dokka.location:org.jetbrains.skiko/SkiaLayerProperties/isVsyncEnabled/#/PointingToDeclaration/skiko/org.jetbrains.skiko/-skia-layer-properties/is-vsync-enabled.html
 $dokka.location:org.jetbrains.skiko/SkiaLayerProperties/isVsyncFramelimitFallbackEnabled/#/PointingToDeclaration/skiko/org.jetbrains.skiko/-skia-layer-properties/is-vsync-framelimit-fallback-enabled.html
@@ -2851,12 +2892,16 @@ $dokka.location:org.jetbrains.skiko/SkikoProperties/fpsEnabled/#/PointingToDecla
 $dokka.location:org.jetbrains.skiko/SkikoProperties/fpsLongFramesMillis/#/PointingToDeclaration/skiko/org.jetbrains.skiko/-skiko-properties/fps-long-frames-millis.html
 $dokka.location:org.jetbrains.skiko/SkikoProperties/fpsLongFramesShow/#/PointingToDeclaration/skiko/org.jetbrains.skiko/-skiko-properties/fps-long-frames-show.html
 $dokka.location:org.jetbrains.skiko/SkikoProperties/fpsPeriodSeconds/#/PointingToDeclaration/skiko/org.jetbrains.skiko/-skiko-properties/fps-period-seconds.html
+$dokka.location:org.jetbrains.skiko/SkikoProperties/frameBuffering/#/PointingToDeclaration/skiko/org.jetbrains.skiko/-skiko-properties/frame-buffering.html
 $dokka.location:org.jetbrains.skiko/SkikoProperties/gpuPriority/#/PointingToDeclaration/skiko/org.jetbrains.skiko/-skiko-properties/gpu-priority.html
 $dokka.location:org.jetbrains.skiko/SkikoProperties/libraryPath/#/PointingToDeclaration/skiko/org.jetbrains.skiko/-skiko-properties/library-path.html
+$dokka.location:org.jetbrains.skiko/SkikoProperties/linuxWaitForVsyncOnRedrawImmediately/#/PointingToDeclaration/skiko/org.jetbrains.skiko/-skiko-properties/linux-wait-for-vsync-on-redraw-immediately.html
+$dokka.location:org.jetbrains.skiko/SkikoProperties/macOSWaitForPreviousFrameVsyncOnRedrawImmediately/#/PointingToDeclaration/skiko/org.jetbrains.skiko/-skiko-properties/mac-o-s-wait-for-previous-frame-vsync-on-redraw-immediately.html
 $dokka.location:org.jetbrains.skiko/SkikoProperties/macOsOpenGLEnabled/#/PointingToDeclaration/skiko/org.jetbrains.skiko/-skiko-properties/mac-os-open-g-l-enabled.html
 $dokka.location:org.jetbrains.skiko/SkikoProperties/renderApi/#/PointingToDeclaration/skiko/org.jetbrains.skiko/-skiko-properties/render-api.html
 $dokka.location:org.jetbrains.skiko/SkikoProperties/vsyncEnabled/#/PointingToDeclaration/skiko/org.jetbrains.skiko/-skiko-properties/vsync-enabled.html
 $dokka.location:org.jetbrains.skiko/SkikoProperties/vsyncFramelimitFallbackEnabled/#/PointingToDeclaration/skiko/org.jetbrains.skiko/-skiko-properties/vsync-framelimit-fallback-enabled.html
+$dokka.location:org.jetbrains.skiko/SkikoProperties/windowsWaitForVsyncOnRedrawImmediately/#/PointingToDeclaration/skiko/org.jetbrains.skiko/-skiko-properties/windows-wait-for-vsync-on-redraw-immediately.html
 $dokka.location:org.jetbrains.skiko/SkikoRenderDelegate///PointingToDeclaration/skiko/org.jetbrains.skiko/-skiko-render-delegate/index.html
 $dokka.location:org.jetbrains.skiko/SkikoRenderDelegate/onRender/#org.jetbrains.skia.Canvas#kotlin.Int#kotlin.Int#kotlin.Long/PointingToDeclaration/skiko/org.jetbrains.skiko/-skiko-render-delegate/on-render.html
 $dokka.location:org.jetbrains.skiko/SkikoSurfaceView///PointingToDeclaration/skiko/org.jetbrains.skiko/-skiko-surface-view/index.html
@@ -2899,4 +2944,5 @@ org.jetbrains.skiko
 org.jetbrains.skiko.ios
 org.jetbrains.skiko.swing
 org.jetbrains.skiko.wasm
+org.jetbrains.skiko.windows
 
