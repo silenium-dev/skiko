@@ -41,8 +41,8 @@ internal class LinuxOpenGLRenderer(
     internal fun swapBuffers(interval: Int) {
         makeCurrent()
         val surface = checkNotNull(lockedDrawingSurface)
-        surface.setSwapInterval(interval)
-        surface.swapBuffers()
+        surface.setSwapInterval(context, interval)
+        surface.swapBuffers(context)
         OpenGLApi.instance.glFlush()
     }
 
@@ -59,7 +59,7 @@ internal class LinuxOpenGLRenderer(
                 }
             }
             onDeviceChosen(adapterName)
-            it.setSwapInterval(swapInterval)
+            it.setSwapInterval(context, swapInterval)
         }
         onContextInit()
     }
@@ -102,12 +102,12 @@ internal class LinuxOpenGLRenderer(
             drawFrame()
             val turnOfVsync = properties.isVsyncEnabled && !SkikoProperties.linuxWaitForVsyncOnRedrawImmediately
             if (turnOfVsync) {
-                surface.setSwapInterval(0)
+                surface.setSwapInterval(context, 0)
             }
-            surface.swapBuffers()
+            surface.swapBuffers(context)
             OpenGLApi.instance.glFlush()
             if (turnOfVsync) {
-                surface.setSwapInterval(swapInterval)
+                surface.setSwapInterval(context, swapInterval)
             }
         } finally {
             unlockDrawingSurface()
@@ -154,14 +154,14 @@ internal object LinuxGLFrameBatch : GLFrameBatch<LinuxOpenGLRenderer>() {
     }
 }
 
-private fun LinuxDrawingSurface.createContext(transparency: Boolean) = createContext(display, transparency)
-private fun LinuxDrawingSurface.destroyContext(context: Long) = destroyContext(display, context)
-private fun LinuxDrawingSurface.makeCurrent(context: Long) = makeCurrent(display, window, context)
-private fun LinuxDrawingSurface.swapBuffers() = swapBuffers(display, window)
-private fun LinuxDrawingSurface.setSwapInterval(interval: Int) = setSwapInterval(display, window, interval)
+private fun LinuxDrawingSurface.createContext(transparency: Boolean) = createContext(display, window, transparency)
+private fun LinuxDrawingSurface.destroyContext(context: Long) = org.jetbrains.skiko.renderer.destroyContext(context)
+private fun LinuxDrawingSurface.makeCurrent(context: Long) = org.jetbrains.skiko.renderer.makeCurrent(context)
+private fun LinuxDrawingSurface.swapBuffers(context: Long) = org.jetbrains.skiko.renderer.swapBuffers(context)
+private fun LinuxDrawingSurface.setSwapInterval(context: Long, interval: Int) = org.jetbrains.skiko.renderer.setSwapInterval(context, interval)
 
-private external fun makeCurrent(display: Long, window: Long, context: Long)
-private external fun createContext(display: Long, transparency: Boolean): Long
-private external fun destroyContext(display: Long, context: Long)
-private external fun setSwapInterval(display: Long, window: Long, interval: Int)
-private external fun swapBuffers(display: Long, window: Long)
+private external fun makeCurrent(context: Long)
+private external fun createContext(display: Long, window: Long, transparency: Boolean): Long
+private external fun destroyContext(context: Long)
+private external fun setSwapInterval(context: Long, interval: Int)
+private external fun swapBuffers(context: Long)
