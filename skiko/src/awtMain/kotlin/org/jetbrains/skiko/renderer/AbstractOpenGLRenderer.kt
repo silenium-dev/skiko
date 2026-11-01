@@ -48,10 +48,13 @@ internal abstract class AbstractOpenGLRenderer(
         glContext = null
     }
 
+    /** Creates the Skia context for the GL context bound by [makeCurrent]. */
+    protected open fun createDirectContext(): DirectContext = DirectContext.makeGL()
+
     private fun ensureContext(): Boolean {
         if (glContext == null) {
             try {
-                val newContext = DirectContext.makeGL()
+                val newContext = createDirectContext()
                 glContext = newContext
                 onContextInitialized(newContext, layer.properties.gpuResourceCacheLimit) { renderInfo }
             } catch (e: Exception) {

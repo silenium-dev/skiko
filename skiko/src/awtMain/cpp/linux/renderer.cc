@@ -132,8 +132,31 @@ private:
     void *const egl;
 };
 
+// The handle stays open for the lifetime of the process, as Skia keeps the resolved GL functions.
+static PFNEGLGETPROCADDRESSPROC loadEglGetProcAddress() {
+    static const auto proc = [] {
+        void *egl = dlopen("libEGL.so.1", RTLD_LAZY);
+        if (!egl) egl = dlopen("libEGL.so", RTLD_LAZY);
+        if (!egl) {
+            std::cerr << "Could not load EGL: " << dlerror() << std::endl;
+            return (PFNEGLGETPROCADDRESSPROC) nullptr;
+        }
+        return (PFNEGLGETPROCADDRESSPROC) dlsym(egl, "eglGetProcAddress");
+    }();
+    return proc;
+}
+
 extern "C"
 {
+JNIEXPORT jlong JNICALL
+Java_org_jetbrains_skiko_renderer_LinuxOpenGLRendererKt_getGLProc(JNIEnv *env, jobject renderer) {
+    if (!loadEglGetProcAddress()) return 0;
+
+    return toJavaPointer(+[](void *, const char name[]) {
+        return loadEglGetProcAddress()(name);
+    });
+}
+
 JNIEXPORT void JNICALL
 Java_org_jetbrains_skiko_renderer_LinuxOpenGLRendererKt_setSwapInterval(JNIEnv *env, jobject renderer, jlong contextPtr,
                                                                         jint interval) {

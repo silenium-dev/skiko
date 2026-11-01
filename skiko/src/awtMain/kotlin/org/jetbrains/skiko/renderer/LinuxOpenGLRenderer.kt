@@ -38,6 +38,17 @@ internal class LinuxOpenGLRenderer(
         checkNotNull(lockedDrawingSurface).makeCurrent(context)
     }
 
+    // The context is created through EGL, but Skia's native GL interface on Linux is GLX-based,
+    // so the interface is assembled from eglGetProcAddress instead.
+    override fun createDirectContext(): DirectContext {
+        val getProc = getGLProc()
+        if (getProc == 0L) {
+            throw RenderException("Cannot load eglGetProcAddress")
+        }
+        return GLAssembledInterface.createFromNativePointers(0, getProc)
+            .use { DirectContext.makeGLWithInterface(it) }
+    }
+
     internal fun swapBuffers(interval: Int) {
         makeCurrent()
         val surface = checkNotNull(lockedDrawingSurface)
@@ -165,3 +176,4 @@ private external fun createContext(display: Long, window: Long, transparency: Bo
 private external fun destroyContext(context: Long)
 private external fun setSwapInterval(context: Long, interval: Int)
 private external fun swapBuffers(context: Long)
+private external fun getGLProc(): Long
