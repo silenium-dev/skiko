@@ -22,7 +22,8 @@ public:
     };
 
     static EGLContextWrapper *create(Display *display, Window window, bool transparency) {
-        const auto egl = dlopen("libEGL.so", RTLD_LAZY);
+        auto egl = dlopen("libEGL.so.1", RTLD_LAZY);
+        if (!egl) egl = dlopen("libEGL.so", RTLD_LAZY);
         if (!egl) {
             std::cerr << "Could not load EGL: " << dlerror() << std::endl;
             return nullptr;
