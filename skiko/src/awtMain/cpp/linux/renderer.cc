@@ -16,7 +16,15 @@ public:
             transparency(_transparency), egl(egl) {};
 
     ~EGLContextWrapper() {
+        const auto eglGetCurrentContext = getProc<PFNEGLGETCURRENTCONTEXTPROC>("eglGetCurrentContext");
+        const auto eglMakeCurrent = getProc<PFNEGLMAKECURRENTPROC>("eglMakeCurrent");
+        const auto eglDestroySurface = getProc<PFNEGLDESTROYSURFACEPROC>("eglDestroySurface");
         const auto eglDestroyContext = getProc<PFNEGLDESTROYCONTEXTPROC>("eglDestroyContext");
+        // EGL defers destroying a context or surface while it is current, so release it first.
+        if (eglGetCurrentContext() == eglContext) {
+            eglMakeCurrent(eglDisplay, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
+        }
+        eglDestroySurface(eglDisplay, eglSurface);
         eglDestroyContext(eglDisplay, eglContext);
         dlclose(egl);
     };
@@ -35,22 +43,28 @@ public:
         const auto eglChooseConfig = (PFNEGLCHOOSECONFIGPROC) dlsym(egl, "eglChooseConfig");
         const auto eglCreateContext = (PFNEGLCREATECONTEXTPROC) dlsym(egl, "eglCreateContext");
         const auto eglCreateWindowSurface = (PFNEGLCREATEWINDOWSURFACEPROC) dlsym(egl, "eglCreateWindowSurface");
+        const auto eglDestroyContext = (PFNEGLDESTROYCONTEXTPROC) dlsym(egl, "eglDestroyContext");
 
+        const auto fail = [egl](const char *message) -> EGLContextWrapper * {
+            std::cerr << message << std::endl;
+            dlclose(egl);
+            return nullptr;
+        };
+
+        // The display is shared by all windows on the same X11 display and eglTerminate isn't reference counted,
+        // so it is never terminated.
         EGLDisplay eglDisplay = eglGetDisplay(display);
         if (eglDisplay == EGL_NO_DISPLAY) {
-            std::cerr << "Could not get egl display" << std::endl;
-            return nullptr;
+            return fail("Could not get egl display");
         }
 
         EGLint major, minor;
         if (!eglInitialize(eglDisplay, &major, &minor)) {
-            std::cerr << "Could not initialize egl" << std::endl;
-            return nullptr;
+            return fail("Could not initialize egl");
         }
 
         if (!eglBindAPI(EGL_OPENGL_ES_API)) {
-            std::cerr << "Could not bind OpenGL API" << std::endl;
-            return nullptr;
+            return fail("Could not bind OpenGL API");
         }
 
         EGLint configConstraints[] = {
@@ -66,9 +80,8 @@ public:
 
         EGLConfig eglConfig;
         EGLint numConfigs;
-        if (!eglChooseConfig(eglDisplay, configConstraints, &eglConfig, 1, &numConfigs)) {
-            std::cerr << "Could not choose egl config" << std::endl;
-            return nullptr;
+        if (!eglChooseConfig(eglDisplay, configConstraints, &eglConfig, 1, &numConfigs) || numConfigs < 1) {
+            return fail("Could not choose egl config");
         }
 
         static const EGLint contextAttribs[] = {
@@ -77,14 +90,13 @@ public:
         };
         EGLContext eglContext = eglCreateContext(eglDisplay, eglConfig, EGL_NO_CONTEXT, contextAttribs);
         if (eglContext == EGL_NO_CONTEXT) {
-            std::cerr << "Could not create egl context" << std::endl;
-            return nullptr;
+            return fail("Could not create egl context");
         }
 
         EGLSurface eglSurface = eglCreateWindowSurface(eglDisplay, eglConfig, window, nullptr);
         if (eglSurface == EGL_NO_SURFACE) {
-            std::cerr << "Could not create egl surface" << std::endl;
-            return nullptr;
+            eglDestroyContext(eglDisplay, eglContext);
+            return fail("Could not create egl surface");
         }
 
         return new EGLContextWrapper(eglDisplay, eglContext, eglConfig, eglSurface, window, transparency, egl);
